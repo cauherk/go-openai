@@ -69,10 +69,12 @@ func (stream *CompletionStream) Close() {
 // stream terminated by a data: [DONE] message.
 func (c *Client) CreateCompletionStream(
 	ctx context.Context,
+	urlSuffix string,
+	apiKey string,
 	request CompletionRequest,
 ) (stream *CompletionStream, err error) {
 	request.Stream = true
-	req, err := c.newStreamRequest(ctx, "POST", "/completions", request)
+	req, err := c.newStreamRequest(ctx, "POST", urlSuffix, apiKey, request)
 	if err != nil {
 		return
 	}
