@@ -1,13 +1,13 @@
 # go-gpt3
-[![GoDoc](http://img.shields.io/badge/GoDoc-Reference-blue.svg)](https://godoc.org/github.com/sashabaranov/go-gpt3)
-[![Go Report Card](https://goreportcard.com/badge/github.com/sashabaranov/go-gpt3)](https://goreportcard.com/report/github.com/sashabaranov/go-gpt3)
+[![GoDoc](http://img.shields.io/badge/GoDoc-Reference-blue.svg)](https://godoc.org/github.com/cauherk/go-openai)
+[![Go Report Card](https://goreportcard.com/badge/github.com/cauherk/go-openai)](https://goreportcard.com/report/github.com/cauherk/go-openai)
 
 
 [OpenAI ChatGPT and GPT-3](https://platform.openai.com/) API client for Go
 
 Installation:
 ```
-go get github.com/sashabaranov/go-gpt3
+go get github.com/cauherk/go-openai
 ```
 
 
@@ -19,7 +19,7 @@ package main
 import (
 	"context"
 	"fmt"
-	gogpt "github.com/sashabaranov/go-gpt3"
+	gogpt "github.com/cauherk/go-openai"
 )
 
 func main() {
@@ -49,7 +49,7 @@ import (
 	"context"
 	"fmt"
 	"io"
-	gogpt "github.com/sashabaranov/go-gpt3"
+	gogpt "github.com/cauherk/go-openai"
 )
 
 func main() {
