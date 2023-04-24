@@ -86,6 +86,39 @@ func (c *Client) newStreamRequest(
 	ctx context.Context,
 	method string,
 	urlSuffix string,
+	apiKey string,
+	body interface{}) (*http.Request, error) {
+	var reqBody []byte
+	if body != nil {
+		var err error
+		reqBody, err = json.Marshal(body)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	req, err := http.NewRequestWithContext(ctx, method, c.fullURL(urlSuffix), bytes.NewBuffer(reqBody))
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Accept", "text/event-stream")
+	req.Header.Set("Cache-Control", "no-cache")
+	req.Header.Set("Connection", "keep-alive")
+	if len(apiKey) > 0 {
+		req.Header.Set("api-key", apiKey)
+	} else {
+		req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.config.authToken))
+	}
+
+	return req, nil
+}
+
+func (c *Client) newStreamRequest4(
+	ctx context.Context,
+	method string,
+	urlSuffix string,
 	body interface{}) (*http.Request, error) {
 	var reqBody []byte
 	if body != nil {

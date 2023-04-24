@@ -88,10 +88,12 @@ func (stream *ChatCompletionStream) GetResponse() *http.Response {
 // stream terminated by a data: [DONE] message.
 func (c *Client) CreateChatCompletionStream(
 	ctx context.Context,
+	urlSuffix string,
+	apiKey string,
 	request ChatCompletionRequest,
 ) (stream *ChatCompletionStream, err error) {
 	request.Stream = true
-	req, err := c.newStreamRequest(ctx, "POST", "/chat/completions", request)
+	req, err := c.newStreamRequest(ctx, "POST", urlSuffix, apiKey, request)
 	if err != nil {
 		return
 	}
